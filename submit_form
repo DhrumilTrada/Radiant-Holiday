@@ -1,0 +1,19 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+def generate_submit_form_file_data():
+    browser = webdriver.Firefox()
+    browser.get('https://yourwebsite.com/your_form')
+
+    form_element = browser.find_element(By.TAG_NAME, 'form')
+    submit_form_file_data = form_element.get_attribute('outerHTML')
+
+    browser.quit()
+
+    return submit_form_file_data
+
+submit_form_file_data = generate_submit_form_file_data()
+with open('submit_form_file_data.html', 'w') as file:
+    file.write(submit_form_file_data)
